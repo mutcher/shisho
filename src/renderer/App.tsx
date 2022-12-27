@@ -1,8 +1,12 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import icon from '../../assets/icon.svg';
 import './App.css';
+import { AppViewModel } from './AppViewModel';
+import { APP_VIEW_MODEL_KEY, inject } from './di';
 
 const Hello = () => {
+  const $vm = inject<AppViewModel>('APP_VM');
+
   return (
     <div>
       <div className="Hello">
@@ -10,7 +14,7 @@ const Hello = () => {
       </div>
       <h1>electron-react-boilerplate</h1>
       <div className="Hello">
-        <a
+        {/* <a
           href="https://electron-react-boilerplate.js.org/"
           target="_blank"
           rel="noreferrer"
@@ -21,9 +25,11 @@ const Hello = () => {
             </span>
             Read our docs
           </button>
-        </a>
+        </a> */}
         <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
+          onClick={() => {
+            $vm.loadBooks();
+          }}
           target="_blank"
           rel="noreferrer"
         >

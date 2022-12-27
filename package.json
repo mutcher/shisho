@@ -259,7 +259,8 @@
   "electronmon": {
     "patterns": [
       "!**/**",
-      "src/main/**"
+      "src/main/**",
+      "src/shisho-integration/**"
     ],
     "logLevel": "quiet"
   }

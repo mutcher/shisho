@@ -14,6 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import { ShishoService } from '../shisho-integration/service';
 
 class AppUpdater {
   constructor() {
@@ -124,9 +125,18 @@ app.on('window-all-closed', () => {
   }
 });
 
+const shishoService = new ShishoService();
+
+function applyShishoHandlers() {
+  ipcMain.handle('shiso-service-get-all-books', (_, args) => {
+    return shishoService.getAllBooks();
+  });
+}
+
 app
   .whenReady()
   .then(() => {
+    applyShishoHandlers();
     createWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
