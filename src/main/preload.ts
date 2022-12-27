@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
-import { IShishoService } from 'shisho-integration/interface';
+import { IShishoService } from '../shisho-integration/interface';
 
 export type Channels = 'ipc-example';
 
